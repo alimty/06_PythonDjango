@@ -1,0 +1,162 @@
+{% load django_tables2 %}
+
+{% render_table certifications_table %}
+
+{% block footer_js %}
+
+<style>
+        
+      body {font-family: Arial, Helvetica, sans-serif;}
+      a{text-decoration: none;}
+      /* The Modal (background) */
+      .modal{
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: #FFFFFF; /* Fallback color */
+        background-color: #FFFFFF; /* Black w/ opacity */
+      }
+      /* Modal Content */
+      .modal-content {
+        position: relative;
+        background-color: #FFFFFF;
+        margin: auto;
+        padding: 0;
+        border: 1px solid #888;
+        width: 80%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s
+      }
+      /* Add Animation */
+      @-webkit-keyframes animatetop {
+        from {top:-300px; opacity:0} 
+        to {top:0; opacity:1}
+      }
+      @keyframes animatetop {
+        from {top:-300px; opacity:0}
+        to {top:0; opacity:1}
+      }
+      /* The Close Button */
+      .closeM {
+        color: #2A2A2A;
+        float: right;
+        font-size: 40px;
+        font-weight: bold;
+      }
+      .closeM:hover,
+      .closeM:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .modal-header {
+        padding: 1px 16px;
+        background-color: #FFFFFF;
+        color: #2A2A2A;
+      }
+      .modal-body {padding: 2px 16px;}
+      .modal-footer {
+        padding: 10px 16px;
+        background-color: #FFFFFF;
+        color: #2A2A2A;
+      }
+      .btns{
+        padding: .5em;
+        margin: .2em;
+      }
+  
+</style>
+
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+
+      <div class="modal-header">
+      <span class="closeM">&times;</span>
+      <h4>Certification "Succeeded" </h4>
+      </div>
+
+      <div class="modal-body">
+      <p>Are you sure to update the certification status to 'Succeeded'?</p>
+      </div>
+
+      <div class="modal-footer">
+      <button class="btns" id="btnYes"> YES </button>
+      <button class="btns" id="btnCancel"> CANCEL! </button>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+  <script>
+    $('.show-errors-dialog-button').on('click', function() {
+      dialogId = '#' + $(this).data('dialog-id');
+      dialog = $(dialogId).get(0);
+      if (! dialog.showModal) {
+        dialogPolyfill.registerDialog(dialog);
+      }
+      dialog.showModal();
+    });
+
+    $('dialog .close').on('click', function() {
+      $(this).parents('dialog').get(0).close();
+    });
+     
+
+    // Get the modal for confirmation box
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("closeM")[0];
+    var cancel = document.getElementById("btnCancel");
+    var clickYes = document.getElementById("btnYes");
+    let targetURL = '';
+    
+    // Two approach is exist Down below, Chose one of them. Static is better in long therm but just for this case chose Dynamic one (jQuery) because it's clean small piece of code.
+
+    // Dynamic approach
+    $('.table-container').on('click', 'a.confirm-modal', (event) => {
+      event.preventDefault();
+      targetURL = this.href;
+      modal.style.display = "block";
+    });
+    
+    // Static Approach
+    var btn = document.getElementsByClassName("confirm-modal");
+    const btns = Array.from(btn); 
+    btns.forEach(button => button.onclick = function(e) {
+      e.preventDefault();
+      targetURL = this.href;
+      modal.style.display = "block";
+    })
+
+
+    clickYes.onclick = function() {
+      window.location.href = targetURL;
+    }
+    cancel.onclick = function() {
+      modal.style.display = "none";
+    }
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+
+
+
+
+  </script>
+{% endblock footer_js %}

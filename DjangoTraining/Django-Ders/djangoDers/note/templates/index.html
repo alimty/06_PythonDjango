@@ -26,10 +26,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Notes</a>
+          <a class="nav-link" href="/notes">Notes</a>
         </li>
 
       </ul>
@@ -45,21 +45,22 @@
   <!-- Container start-->
 
   <div class="container">
-    <form>
+    <form method='POST'>
+      {% csrf_token %}
       <div class="form-group">
         <label for="exampleFormControlInput1"> User Name</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="User Name">
+        <input type="text" class="form-control" id="exampleFormControlInput1" name='username' placeholder="User Name">
       </div>
       <div class="form-group">
         <label for="exampleFormControlInput1"> Title</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title">
+        <input type="text" class="form-control" id="exampleFormControlInput1" name='title' placeholder="Title">
       </div>
 
       <div class="form-group">
         <label for="exampleFormControlTextarea1">Your Note</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        <textarea class="form-control" name='note' id="exampleFormControlTextarea1" rows="3"></textarea>
       </div>
-      <button type="button" class="btn btn-light">Send</button>
+      <button type="submit" class="btn btn-light">Send</button>
     </form>
 
 

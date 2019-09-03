@@ -1,0 +1,3 @@
+[submodule "DjangoTraining/DjangoTwitter/DjangoTraining/DjangoTwitter"]
+	path = DjangoTraining/DjangoTwitter/DjangoTraining/DjangoTwitter
+	url = https://github.com/Hyperclaw79/HPDF-Task-1-Twitter-Clone-Demo

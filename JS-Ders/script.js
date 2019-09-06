@@ -8,6 +8,7 @@ let array2 = array1.reverse(); // i,l,a
 let array3 = "anil".split('');  // a,n,i,l
 
 array2.push(array3);    // sanirim bu sekilde push olmaz array icine array.
+array2.concat(array3);    // sanirim bu sekilde push olmaz array icine array.
 
 // console çıktısı ; 
 // array 1 : uzunluğu ? , sonuncu = a,l,i 

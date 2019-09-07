@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Person
+from .models import Person, Todo
 
 
 def index(request):
@@ -24,3 +24,17 @@ def show_notes(request):
     context = dict()
     context ['notes'] = Person.objects.all().order_by('-pk')
     return render(request, 'notes.html', context)
+
+def todo(request):
+  if request.method == 'POST':
+    todouser = request.POST.get('todouser')
+    todotask = request.POST.get('todotask')
+    result = Todo.objects.create(
+      todouser=todouser,
+      todotask=todotask
+    )
+    if result:
+      print('Todo Saved')
+    else:
+      print('Not Saved')
+  return render(request, 'todo.html')

@@ -14,3 +14,8 @@ class Book(models.Model):
     author = models.CharField(max_length=70, blank=True)
     stock_info = models.PositiveIntegerField()
     add_date = models.DateField()
+
+
+class Todo(models.Model):
+    todouser = models.CharField(max_length=30, blank=False)
+    todotask = models.TextField(max_length=30, default="Task to do" , blank=True, null=True)

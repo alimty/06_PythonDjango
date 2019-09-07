@@ -1,21 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todos</title>
+    
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+</head>
+<body>
 
 
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-
-
+<!-- Container start -->
 <div class="container">
-    <div class="row">
-        <div class="col-md-6">
-          <h1>Todos</h1>
-          <div class="input-group input-group-sm mb-3">
-              <input type="text" class="form-control" placeholder="Todo User">
-          </div>
-          <input type="text" class="form-control add-todo" placeholder="My TASK">
-          <button id="checkAll" class="btn btn-success">Send Task</button>
-        </div>
+    <form method="POST">
+    {% csrf_token %}
+    <div class="col-md-6">
+    <h1>Todos</h1>
+    <div class="input-group input-group-sm mb-3">
+    <input type="text" name='todouser' class="form-control" placeholder="Todo User">
     </div>
+    <label for="exampleFormControlTextarea1">My TASK</label>
+    <textarea class="form-control" name='todotask' id="exampleFormControlTextarea1" rows="3" placeholder=""> </textarea>
+    <button type="submit" class="btn btn-success">Send Task</button>
+    </div>
+    </div>
+    </form>
 </div>
 
 
 
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Person, Todo
 
 
@@ -28,6 +28,9 @@ def show_notes(request):
 def todo(request):
   if request.method == 'POST':
     todouser = request.POST.get('todouser')
+    if todouser is None:
+      print ('No user')
+      return redirect('/')
     todotask = request.POST.get('todotask')
     result = Todo.objects.create(
       todouser=todouser,

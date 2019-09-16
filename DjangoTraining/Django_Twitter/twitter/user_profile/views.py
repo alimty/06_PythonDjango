@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-
+from tweet.views import get_tweet
 
 
 def signup(request):
@@ -30,10 +30,9 @@ def signup(request):
       return redirect('/')
   return render (request, 'signup.html')
 
-
 def index(request):
   if request.user.is_authenticated:
-    return render(request, 'index.html')
+    return get_tweet(request)
   return redirect('/login')
 
 def user_login(request):

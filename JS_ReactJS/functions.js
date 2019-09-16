@@ -46,13 +46,36 @@
 // let opt02 = 50;
 
 
-function alis (param01, param02){
+// function alis (param01, param02){
 
-  param01 > param02 ? console.log('bigger') : console.log('smaller');
+//   param01 > param02 ? console.log('bigger') : console.log('smaller');
 
+// }
+
+// alis(30);
+
+// () => {};
+
+// let date = new Date();
+
+// console.log(date);
+// console.log(typeof date);
+
+
+
+// var newDate = new Date(2011, 08, 05);
+
+// console.log(newDate);
+
+
+var firstName = true;
+var lastName = false;
+
+
+
+if (firstName == lastName){
+console.log('Its OK');
 }
-
-alis(30);
-
-() => {};
-
+else{
+  console.log('Its not OK');
+}

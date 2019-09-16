@@ -11,10 +11,10 @@ def signup(request):
     password = request.POST.get('password')
     if User.objects.filter(email=email).count():
       print('email adresi mevcut')
-      return redirect('/')
+      return redirect('/signup')
     if User.objects.filter(username=username).count():
       print('username mevcut')
-      return redirect('/')
+      return redirect('/signup')
     User.objects.create_user(
       username=username,
       email=email,
@@ -32,4 +32,25 @@ def signup(request):
 
 
 def index(request):
+  if request.user.is_authenticated:
     return render(request, 'index.html')
+  return redirect('/login')
+
+def user_login(request):
+  if request.method =='POST':
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    if username and password is not None:
+      user = authenticate(
+        username=username,
+        password=password
+      )
+      print('id:', user.id)
+      if user is not None:
+        login(request, user)
+        return redirect('/')
+  return render(request, 'login.html')
+
+def user_logout(request):
+  logout(request)
+  return redirect('/')

@@ -29,7 +29,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #myApp
-    'user_profile'
+    'user_profile',
+    'tweet'
+
 ]
 
 MIDDLEWARE = [

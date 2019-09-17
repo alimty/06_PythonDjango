@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from tweet.views import get_tweet
-
+from .models import Topics
 
 def signup(request):
   if request.method == 'POST':
@@ -35,6 +35,7 @@ def index(request):
     return get_tweet(request)
   return redirect('/login')
 
+
 def user_login(request):
   if request.method =='POST':
     username = request.POST.get('username')
@@ -53,3 +54,8 @@ def user_login(request):
 def user_logout(request):
   logout(request)
   return redirect('/')
+
+def show_last_topics(request):
+  context = dict()
+  context['last_topics'] = Topics.objects.order_by('-pk')
+  return render(request, 'index.html', context)

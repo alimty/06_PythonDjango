@@ -39,15 +39,11 @@
             <div class="col-3">
                 <h1 class="ml-2 badge-info badge-pill">Gundem</h1>
                 <ul class="list-group">
+                    {% for topic in last_topics %}
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Cras justo odio
+                        {{ topic.topic }}
                     </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Dapibus ac facilisis in
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Morbi leo risus
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="col-6-fluid">

@@ -17,8 +17,8 @@ def send_tweet(request):
   return redirect('/')
 
 def get_tweet(request):
-  context= dict()
-  context['tweets']= Tweet.objects.order_by('-pk')
+  context = dict()
+  context['tweets'] = Tweet.objects.order_by('-pk')
   return render(request, 'index.html', context)
       
 

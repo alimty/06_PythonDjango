@@ -61,21 +61,38 @@
 // console.log(date);
 // console.log(typeof date);
 
-
-
 // var newDate = new Date(2011, 08, 05);
 
 // console.log(newDate);
 
 
-var firstName = true;
-var lastName = false;
+// var firstName = true;
+// var lastName = false;
 
 
+// if (firstName == lastName){
+// console.log('Its OK');
+// }
+// else{
+//   console.log('Its not OK');
+// }
 
-if (firstName == lastName){
-console.log('Its OK');
-}
-else{
-  console.log('Its not OK');
-}
+
+// let y=new Date().getYear();
+// // let y= new Date.getYear(2018);
+// console.log(typeof y);
+
+// function leapYear(){
+//   let y=new Date().getYear();
+//   console.log(y);
+//   if ( 0 == y/4;){
+//     console.log('This year leap year');
+//   }
+//   else{
+//     console.log('This year NOT leap year');
+//   }
+// }
+
+// // console.log(leapYear());
+// leapYear();
+

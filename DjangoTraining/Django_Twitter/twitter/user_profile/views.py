@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from tweet.views import get_tweet
 from .models import Topics
 
+
 def signup(request):
   if request.method == 'POST':
     username = request.POST.get('username')
@@ -21,8 +22,8 @@ def signup(request):
       password=password
     )
     user = authenticate(
-      username = username,
-      password = password
+      username=username,
+      password=password
     )
     if user is not None:
       print(user)
@@ -30,32 +31,37 @@ def signup(request):
       return redirect('/')
   return render (request, 'signup.html')
 
+
+# def show_last_topics(request):
+#     context = dict()
+#     context['last_topics'] = Topics.objects.order_by('-pk')
+#     return render(request, 'index.html', context)
+
+
 def index(request):
-  if request.user.is_authenticated:
-    return get_tweet(request)
-  return redirect('/login')
+    if request.user.is_authenticated:
+        return get_tweet(request)
+    return redirect('/login')
 
 
 def user_login(request):
-  if request.method =='POST':
-    username = request.POST.get('username')
-    password = request.POST.get('password')
-    if username and password is not None:
-      user = authenticate(
-        username=username,
-        password=password
-      )
-      print('id:', user.id)
-      if user is not None:
-        login(request, user)
-        return redirect('/')
-  return render(request, 'login.html')
+    if request.method =='POST':
+      username = request.POST.get('username')
+      password = request.POST.get('password')
+      if username and password is not None:
+        user = authenticate(
+          username=username,
+          password=password
+        )
+        print('id:', user.id)
+        if user is not None:
+          login(request, user)
+          return redirect('/')
+    return render(request, 'login.html')
+
 
 def user_logout(request):
-  logout(request)
-  return redirect('/')
+    logout(request)
+    return redirect('/')
 
-def show_last_topics(request):
-  context = dict()
-  context['last_topics'] = Topics.objects.order_by('-pk')
-  return render(request, 'index.html', context)
+

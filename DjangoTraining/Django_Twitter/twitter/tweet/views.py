@@ -20,7 +20,8 @@ def send_tweet(request):
 
 def get_tweet(request):
     context = dict()
-    context['last_topics'] = Topics.objects.order_by('-pk')
+    # context['last_topics'] = Topics.objects.order_by('-pk')
+    context['last_topics'] = Topics.objects.all().order_by('-pk')[:10]
     # context = dict()
     context['tweets'] = Tweet.objects.order_by('-pk')
     return render(request, 'index.html', context)

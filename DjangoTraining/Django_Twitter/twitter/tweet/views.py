@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Tweet
-from user_profile.models import Topics
+from user_profile.models import Topics, Follow
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required 
 
@@ -18,13 +18,17 @@ def send_tweet(request):
   return redirect('/')
 
 
-def get_tweet(request):
-    context = dict()
+def get_tweet(request, user_id):
+    context = dict() #context = {}
+    print('Gelen user Id:', user_id)
+    user_list = Follow.objects.filter(follow_id = user_id)
+    get_id = ""
+    for item in user_list:
+      print('item id: ', item.following_id)
+      get_id = item.following_id
     # context['last_topics'] = Topics.objects.order_by('-pk')
     context['last_topics'] = Topics.objects.all().order_by('-pk')[:10]
     # context = dict()
-    context['tweets'] = Tweet.objects.order_by('-pk')
+    context['tweets'] = Tweet.objects.filter(user_id=get_id).order_by('-pk')
     return render(request, 'index.html', context)
-
-
 

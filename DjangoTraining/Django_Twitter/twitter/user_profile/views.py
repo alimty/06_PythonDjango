@@ -2,11 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from tweet.views import get_tweet
-<<<<<<< HEAD
-from .models import Follow
-=======
 from .models import Topics, Follow
->>>>>>> 0533f8d1619755e730830e7626d67534ca7be334
 
 
 def signup(request):
@@ -38,10 +34,7 @@ def signup(request):
 
 def index(request):
     if request.user.is_authenticated:
-<<<<<<< HEAD
         print('User LoggedIn')
-=======
->>>>>>> 0533f8d1619755e730830e7626d67534ca7be334
         return get_tweet(request, request.user.id)
     return redirect('/login')
 
@@ -67,7 +60,6 @@ def user_logout(request):
     return redirect('/')
 
 
-<<<<<<< HEAD
 def follow(request, follow_id, following_id):
     if request.method == 'Get':
         print('user ID : ', follow_id, 'follow ID : ', following_id)
@@ -80,7 +72,8 @@ def follow(request, follow_id, following_id):
         else:
             print('You have a Problem')
     return redirect('/')
-=======
+
+
 def follow(request, following_id):
     if request.method == 'GET':
         print ('user ID: ', request.user.id, 'folowing ID', following_id)
@@ -93,4 +86,3 @@ def follow(request, following_id):
         else:
           print('Sikinti var')
     return redirect('/')
->>>>>>> 0533f8d1619755e730830e7626d67534ca7be334

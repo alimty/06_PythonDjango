@@ -3,6 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="287fbded-d87e-4d75-8441-1996d5760c1e" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../00_UdemyModernJS/Readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../00_UdemyModernJS/Readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../01_Udemy_React/Readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../01_Udemy_React/Readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../02_UdemyReactTR/Readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../02_UdemyReactTR/Readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DjangoTwitter-Examples/Django-Twitter-Clone" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/Django_Twitter.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
@@ -113,7 +120,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-54" />
     <option name="y" value="60" />
     <option name="width" value="1890" />

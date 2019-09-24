@@ -2,61 +2,56 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from tweet.views import get_tweet
-from .models import Topics
+from .models import Follow
 
 
 def signup(request):
-  if request.method == 'POST':
-    username = request.POST.get('username')
-    email = request.POST.get('email')
-    password = request.POST.get('password')
-    if User.objects.filter(email=email).count():
-      print('email adresi mevcut')
-      return redirect('/signup')
-    if User.objects.filter(username=username).count():
-      print('username mevcut')
-      return redirect('/signup')
-    User.objects.create_user(
-      username=username,
-      email=email,
-      password=password
-    )
-    user = authenticate(
-      username=username,
-      password=password
-    )
-    if user is not None:
-      print(user)
-      login(request, user)
-      return redirect('/')
-  return render (request, 'signup.html')
-
-
-# def show_last_topics(request):
-#     context = dict()
-#     context['last_topics'] = Topics.objects.order_by('-pk')
-#     return render(request, 'index.html', context)
-
-
-def index(request):
-    if request.user.is_authenticated:
-        return get_tweet(request)
-    return redirect('/login')
-
-
-def user_login(request):
-    if request.method =='POST':
-      username = request.POST.get('username')
-      password = request.POST.get('password')
-      if username and password is not None:
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        if User.objects.filter(email=email).count():
+            print('email adresi mevcut')
+            return redirect('/signup')
+        if User.objects.filter(username=username).count():
+            print('username mevcut')
+            return redirect('/signup')
+        User.objects.create_user(
+          username=username,
+          email=email,
+          password=password
+        )
         user = authenticate(
           username=username,
           password=password
         )
-        print('id:', user.id)
         if user is not None:
-          login(request, user)
-          return redirect('/')
+            print(user)
+            login(request, user)
+            return redirect('/')
+    return render(request, 'signup.html')
+
+
+def index(request):
+    if request.user.is_authenticated:
+        print('User LoggedIn')
+        return get_tweet(request, request.user.id)
+    return redirect('/login')
+
+
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        if username and password is not None:
+            user = authenticate(
+              username=username,
+              password=password
+            )
+            print('id:', user.id)
+            if user is not None:
+                login(request, user)
+                return redirect('/')
     return render(request, 'login.html')
 
 
@@ -65,3 +60,15 @@ def user_logout(request):
     return redirect('/')
 
 
+def follow(request, follow_id, following_id):
+    if request.method == 'Get':
+        print('user ID : ', follow_id, 'follow ID : ', following_id)
+        result = Follow.objects.create(
+          follower_id=follow_id,
+          following_id=following_id
+        )
+        if result:
+            print('Follow successful.')
+        else:
+            print('You have a Problem')
+    return redirect('/')

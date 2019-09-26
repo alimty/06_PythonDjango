@@ -60,18 +60,18 @@ def user_logout(request):
     return redirect('/')
 
 
-def follow(request, follow_id, following_id):
-    if request.method == 'Get':
-        print('user ID : ', follow_id, 'follow ID : ', following_id)
-        result = Follow.objects.create(
-          follower_id=follow_id,
-          following_id=following_id
-        )
-        if result:
-            print('Follow successful.')
-        else:
-            print('You have a Problem')
-    return redirect('/')
+# def follow(request, follow_id, following_id):
+#     if request.method == 'Get':
+#         print('user ID : ', follow_id, 'follow ID : ', following_id)
+#         result = Follow.objects.create(
+#           follower_id=follow_id,
+#           following_id=following_id
+#         )
+#         if result:
+#             print('Follow successful.')
+#         else:
+#             print('You have a Problem')
+#     return redirect('/')
 
 
 def follow(request, following_id):
@@ -84,5 +84,5 @@ def follow(request, following_id):
         if result:
           print('Follow is successful')
         else:
-          print('Sikinti var')
+          print('You have a Problem')
     return redirect('/')

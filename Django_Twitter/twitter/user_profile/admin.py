@@ -18,8 +18,8 @@ class TopicsAdmin(admin.ModelAdmin):
 class FollowAdmin(admin.ModelAdmin):
     list_display = (
       'pk',
-      'follow_id',
-      'following_id'
+      'follower_id',
+      'following_id',
     )
 
 

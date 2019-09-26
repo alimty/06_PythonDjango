@@ -14,7 +14,7 @@ def signup(request):
             print('email adresi mevcut')
             return redirect('/signup')
         if User.objects.filter(username=username).count():
-            print('username mevcut')
+            print('username exist')
             return redirect('/signup')
         User.objects.create_user(
           username=username,
@@ -60,25 +60,11 @@ def user_logout(request):
     return redirect('/')
 
 
-# def follow(request, follow_id, following_id):
-#     if request.method == 'Get':
-#         print('user ID : ', follow_id, 'follow ID : ', following_id)
-#         result = Follow.objects.create(
-#           follower_id=follow_id,
-#           following_id=following_id
-#         )
-#         if result:
-#             print('Follow successful.')
-#         else:
-#             print('You have a Problem')
-#     return redirect('/')
-
-
-def follow(request, following_id):
+def follow(request, follower_id, following_id):
     if request.method == 'GET':
         print ('user ID: ', request.user.id, 'folowing ID', following_id)
         result = Follow.objects.create(
-          follow_id=request.user.id,
+          follower_id=request.user.id,
           following_id=following_id
         )
         if result:

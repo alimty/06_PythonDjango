@@ -8,5 +8,3 @@ class Topics(models.Model):
 class Follow(models.Model):
     follower_id = models.CharField(max_length=100)
     following_id = models.CharField(max_length=100)
-    follow_id = models.CharField(max_length=100)
-    following_id = models.CharField(max_length=100)

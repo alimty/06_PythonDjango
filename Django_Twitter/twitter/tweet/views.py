@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 
-@login_required 
+@login_required
 def send_tweet(request):
     if request.method == 'POST':
         post = request.POST.get('tweet')
@@ -20,14 +20,15 @@ def send_tweet(request):
 
 
 def get_tweet(request, user_id):
-    print('Coming User Id:', user_id)
+    print('\n\n\n ===> Coming User Id:', user_id)
     context = dict()
-    # user_list = Follow.objects.filter(follower_id == user_id)
-    tweet_list = Tweet.objects.filter(follower_id = user_id)
+    user_list = Follow.objects.filter(follower_id = user_id)
+    # tweet_list = Tweet.objects.filter(follower_id = user_id)
+    print('\n\n\n ===> User list:', dir(user_list))
 
     get_id = ""
-    for item in tweet_list:
-        print('item id ', item.following_id)
+    for item in user_list:
+        print('item id :', item.following_id)
         get_id = item.following_id
 
     context['last_topics'] = Topics.objects.all().order_by('-pk')[:10]

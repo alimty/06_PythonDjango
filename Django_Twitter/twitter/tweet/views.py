@@ -20,11 +20,11 @@ def send_tweet(request):
 
 
 def get_tweet(request, user_id):
-    print('\n\n\n ===> Coming User Id:', user_id)
+    # print('\n\n\n ===> Coming User Id:', user_id)
     context = dict()
     user_list = Follow.objects.filter(follower_id = user_id)
     # tweet_list = Tweet.objects.filter(follower_id = user_id)
-    print('\n\n\n ===> User list:', dir(user_list))
+    # print('\n\n\n ===> User list:', user_list)
 
     get_id = ""
     for item in user_list:

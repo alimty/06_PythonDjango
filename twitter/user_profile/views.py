@@ -48,7 +48,7 @@ def user_login(request):
               username=username,
               password=password
             )
-            print('innlogin User id:', user.id)
+            # print('innlogin User id:', user.id)
             if user is not None:
                 login(request, user)
                 return redirect('/')

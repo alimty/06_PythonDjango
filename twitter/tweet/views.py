@@ -11,7 +11,7 @@ def send_tweet(request):
         post = request.POST.get('tweet')
         print('tweet : ', post)
         result = Tweet.objects.create(
-          user_id=request.user,
+          user_name=request.user,
           post=post
         )
     if result:
@@ -20,6 +20,8 @@ def send_tweet(request):
 
 
 def get_tweet(request, user_id):
+    print("get tweet user Id", user_id)
+    # print("get tweet user Id", user_name)
     context = dict()
     context['last_topics'] = Topics.objects.all().order_by('-pk')[:10]
     user_list = Follow.objects.filter(follower_id=user_id)

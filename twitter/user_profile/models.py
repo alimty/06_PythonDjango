@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Topics(models.Model):
@@ -6,5 +7,7 @@ class Topics(models.Model):
 
 
 class Follow(models.Model):
-    follower_id = models.CharField(max_length=100)
-    following_id = models.CharField(max_length=100)
+    follower_id = models.CharField(max_length=200)
+    following_id = models.ForeignKey(
+        User, on_delete=models.CASCADE
+    )

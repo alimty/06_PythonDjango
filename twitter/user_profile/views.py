@@ -48,7 +48,7 @@ def user_login(request):
               username=username,
               password=password
             )
-            print('id:', user.id)
+            print('innlogin User id:', user.id)
             if user is not None:
                 login(request, user)
                 return redirect('/')
@@ -60,12 +60,13 @@ def user_logout(request):
     return redirect('/')
 
 
-def follow(request, follower_id, following_id):
+def follow(request, following_id):
     if request.method == 'GET':
         print ('user ID: ', request.user.id, 'folowing ID', following_id)
+        following_user = User.objects.filter(pk=following_id)
         result = Follow.objects.create(
           follower_id=request.user.id,
-          following_id=following_id
+          following_id=following_user
         )
         if result:
           print('Follow is successful')

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 class Tweet(models.Model):
-    user_id = models.ForeignKey(
+    user_name = models.ForeignKey(
       User, on_delete=models.CASCADE
     )
     post = models.CharField(max_length=240)

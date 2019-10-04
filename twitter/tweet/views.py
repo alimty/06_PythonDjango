@@ -20,17 +20,39 @@ def send_tweet(request):
 
 
 def get_tweet(request, user_id):
-    # print('\n\n\n ===> Coming User Id:', user_id)
     context = dict()
-    user_list = Follow.objects.filter(follower_id = user_id)
-    # tweet_list = Tweet.objects.filter(follower_id = user_id)
-    # print('\n\n\n ===> User list:', user_list)
-
-    get_id = ""
-    for item in user_list:
-        print('item id :', item.following_id)
-        get_id = item.following_id
-
     context['last_topics'] = Topics.objects.all().order_by('-pk')[:10]
-    context['tweets'] = Tweet.objects.order_by('-pk')
+    user_list = Follow.objects.filter(follower_id=user_id)
+    tweet_list = list()
+    for item in user_list:
+        tweet_list.append(Tweet.objects.filter(user_name=item.following_id).order_by('-pk'))
+    tweets = list()
+    for i in tweet_list:
+        for j in i:
+            # print("user post :", j.post,  " user name: ", j.user_name)
+            tweets.append(j)
+    sorted(tweets, key=lambda x: x.created_date),
+    tweets.sort(key=lambda x: x.created_date, reverse=True)
+    context['tweets'] = tweets
     return render(request, 'index.html', context)
+
+
+"""
+JSON
+context = {
+    'tweets' : [
+        user_id-tweet1,
+        user_id-tweet2,
+        user_id-tweet3,
+        ...
+    ]
+    }
+
+
+    #here user catching yourself as a follower from follow table. Which means I following bunch of people with number of tweets. lets say I'm follower of 3 person.
+
+    # I'm creating tweet list that comes from person that I followed which will be visible in my main screen.
+    for item in user_list:
+    # here item is group of tweets because each user can have multiple tweets
+
+"""

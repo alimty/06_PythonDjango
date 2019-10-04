@@ -1,10 +1,10 @@
-from .models import Tweet
 from django.contrib import admin
+from .models import Tweet
 
 class TweetAdmin(admin.ModelAdmin):
     list_display = (
         'pk',
-        'user_id',
+        'user_name',
         'post'
     )
 

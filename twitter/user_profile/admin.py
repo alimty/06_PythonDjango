@@ -3,7 +3,7 @@ from .models import Topics, Follow
 
 
 class TopicsAdmin(admin.ModelAdmin):
-    list_display =(
+    list_display = (
       'pk',
       'topic',
     )
